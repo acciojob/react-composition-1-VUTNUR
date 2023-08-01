@@ -1,21 +1,27 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
-const Tabs=({value})=>{
-    let [tab,setTab]=useState(0);
-    return(
-        <div>
-            <ul>
-                {
-                     value.map((obj,i)=>{
-                        // console.log(obj)
-                        return(
-                            <li onClick={()=>setTab(i)} >{obj.title}</li> 
-                        )
-                    })
-                }
-            </ul>
-            <p>{value[tab].content}</p>
-        </div>
-    )
+function Tabs({arr}){
+const [tab, setTab] = useState(0);
+
+const handleTabClick = (i) => {
+    setTab(i);
+  };
+    return (
+    <>
+     <ul>
+        {arr.map((tab, i) => (
+          <li
+            key={i}
+            onClick={() => handleTabClick(i)}>
+            {tab.title}
+          </li>
+        ))}
+      </ul>
+      <p>
+        {arr[tab].content}
+      </p>
+    </>
+);
 }
+
 export default Tabs;
